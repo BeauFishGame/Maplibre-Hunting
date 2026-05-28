@@ -34,7 +34,7 @@
   <div id="doc-banner"></div>
   <div id="top-bar">
     <a href="https://www.fishandgame.org.nz/" target="_blank">
-      <img class="logo" src="images/White%20LS.png" alt="Logo">
+      <img class="logo" src="images/White%20LS - copy.png" alt="Logo">
     </a>
 
     <div id="search-container">
@@ -1410,7 +1410,7 @@ const expr = clauses.length ? ['all', ...clauses] : true;
         });
 
       const pointTypeDefaultImages = {
-        'AccessPoint': 'images/Slide1.PNG',
+        'AccessPoint': 'images/Slide22.PNG',
         'TrampingAccess': 'images/Slide2.PNG',
         '4x4Access': 'images/Slide3.PNG',
         'BoatRamp': 'images/Slide4.PNG',
@@ -1425,6 +1425,7 @@ const expr = clauses.length ? ['all', ...clauses] : true;
         'Parking': 'images/Slide15.PNG',
         'Shop': 'images/Slide16.PNG',
         'Lodge': 'images/Slide17.PNG',
+        'RegBoundary': 'images/Slide21.PNG',
       };
 
 
@@ -2897,14 +2898,14 @@ let currentNavNumber = null;
             paint: {
               'fill-color': [
                 'case',
-                ['==', ['get', 'RegionCode'], 13],
-                '#355E3B',          // green for region_code 13
+                ['!=', ['get', 'RegionCode'], 2],
+                '#000000',          // green for region_code 13
                 '#000000'           // fallback colour for all others (can be transparent)
               ],
               'fill-opacity': [
                 'case',
-                ['==', ['get', 'RegionCode'], 13],
-                0.2,               // shallow fill
+                ['!=', ['get', 'RegionCode'], 2],
+                0.5,               // shallow fill
                 0                   // fully transparent for other regions
               ]
             }
