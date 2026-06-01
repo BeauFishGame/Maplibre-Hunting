@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Fishing Map | Fish & Game New Zealand</title>
+  <title>Hunting Map | Fish & Game New Zealand</title>
   <link rel="icon" href="images/favicon.png" type="image/png">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <script src="https://unpkg.com/maplibre-gl@3.6.1/dist/maplibre-gl.js"></script>
@@ -34,7 +34,7 @@
   <div id="doc-banner"></div>
   <div id="top-bar">
     <a href="https://www.fishandgame.org.nz/" target="_blank">
-      <img class="logo" src="images/White%20LS - copy.png" alt="Logo">
+      <img class="logo" src="images/White%20LS - Copy.png" alt="Logo">
     </a>
 
     <div id="search-container">
@@ -3006,7 +3006,7 @@ if (!map.getLayer('FG Regions-line')) {
         if (!sources['Routes']) {
           map.addSource('Routes', {
             type: 'geojson',
-            data: 'https://data.fishandgameaccessmap.org/secure-geojson/Routes.geojson?token=fish-access-2025'
+            data: 'https://data.fishandgameaccessmap.org/secure-geojson/Routes_TBC.geojson?token=fish-access-2025'
           });
         }
 
@@ -3397,7 +3397,7 @@ fetch(URL_POINTS_GEOJSON)
         suggestions.innerHTML = '';
         if (!query) { suggestions.style.display = 'none'; return; }
 
-        const riverMatches = allFeatures.filter(f => f.properties.Water.toLowerCase().includes(query));
+        const riverMatches = allFeatures.filter(f => f.properties.title.toLowerCase().includes(query));
         const pointMatches = allPointsFeatures.filter(f => f.properties.title && f.properties.title.toLowerCase().includes(query));
 
         if (riverMatches.length) {
