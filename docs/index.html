@@ -1377,31 +1377,64 @@ const expr = clauses.length ? ['all', ...clauses] : true;
       const DOC_REGION_CODE = 13;
 
       const riverDefaultImage = {
-        FG: 'images/Slide12.PNG',
-        DOC: 'images/Slide13.PNG',
-        DESIGNATED: 'images/Slide20.png'
-      };
+  FG: 'images/Slide12.PNG',
+  DOC: 'images/Slide13.PNG',
+  MATARIKI: 'images/Slide25.PNG',
+  WAIPA: 'images/Slide23.PNG',
+  DOC_WAIPA: 'images/Slide24.PNG',
+  REFUGE: 'images/Slide26.PNG'
+};
 
       const flowTypeDefaultImages = {
         Flow: 'images/Slide18.png',
         Temperature: 'images/Slide19.png',
       };
 
-      function getRiverDefaultImage(props) {
+      function getPermitDefaultImage(props) {
+  const raw =
+    props.more_info_name
+    '';
 
-        // --- Designated water override ---
-        if (Number(props.designated_water) === 1) {
-          return riverDefaultImage.DESIGNATED;
-        }
+  const txt = String(raw).toLowerCase();
 
-        // --- Normal region logic ---
-        const raw =
-          props.RegionCode ?? props.region_code ?? props.regioncode ?? props.Regioncode;
+  const hasFG = txt.includes('fish & game') || txt.includes('fish and game');
+  const hasDOC = txt.includes('doc');
+  const hasMatariki = txt.includes('matariki');
+  const hasWaipa = txt.includes('waipa');
 
-        const rc = Number.parseInt(String(raw ?? '').trim(), 10);
+  // Combined permit
+  if (hasDOC && hasWaipa) return riverDefaultImage.DOC_WAIPA;
 
-        return rc === DOC_REGION_CODE ? riverDefaultImage.DOC : riverDefaultImage.FG;
-      }
+  // Single permits
+  if (hasMatariki) return riverDefaultImage.MATARIKI;
+  if (hasWaipa) return riverDefaultImage.WAIPA;
+  if (hasDOC) return riverDefaultImage.DOC;
+  if (hasFG) return riverDefaultImage.FG;
+
+  return null;
+}
+
+ function getRiverDefaultImage(props) {
+
+  // Refuge override
+  if (Number(props.refuge) === 1) {
+    return riverDefaultImage.REFUGE;
+  }
+
+  // Permit image
+  const permitImage = getPermitDefaultImage(props);
+  if (permitImage) return permitImage;
+
+  // Fallback region logic
+  const raw =
+    props.RegionCode ?? props.region_code ?? props.regioncode ?? props.Regioncode;
+
+  const rc = Number.parseInt(String(raw ?? '').trim(), 10);
+
+  return rc === DOC_REGION_CODE
+    ? riverDefaultImage.DOC
+    : riverDefaultImage.FG;
+}
 
       ['images/Slide12.PNG', 'images/Slide13.PNG', 'images/Slide18.png', 'images/Slide19.png', 'images/Slide20.PNG']
         .forEach(src => {
