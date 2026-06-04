@@ -1332,7 +1332,7 @@ const expr = clauses.length ? ['all', ...clauses] : true;
       window.__cardPhotos = [];
       window.__cardPhotoIndex = 0;
 
-      //f
+      
       function collectPhotoUrls(props) {
         const candidates = [
           props.image, props.images, props.photo, props.photos,
@@ -2725,7 +2725,7 @@ let currentNavNumber = null;
 
       const FLOW_DEV_URL = `${GEOJSON_BASE}/flow_combined_dev.geojson?token=fish-access-2025`;
       const FLOW_PROD_URL = `${GEOJSON_BASE}/flow_combined.geojson?token=fish-access-2025`;
-      const FLOW_URL = isDev ? FLOW_DEV_URL : FLOW_PROD_URL;
+      const FLOW_URL = isDev ? FLOW_DEV_URL_TBC : FLOW_PROD_URL_TBC;
 
       fetch(URL_SEARCH_INDEX)
         .then(res => res.json()).then(d => { allFeatures = d.features; })
