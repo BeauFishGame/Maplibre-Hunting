@@ -2633,10 +2633,8 @@ content += devSignInfo;
           // 📊 Umami analytics: waterway selection by region
           if (window.umami) {
             const rc = getRegionCode(props);   // uses your existing helper
-            umami.track('waterway-select', {
-              region_name: props.Region || props.region || null,
-              water_name: props.Water || props.name || null,
-              water_type: props.water_type || null
+            umami.track('shapefile-select', {
+              Shape_name: props.title || props.name || null,
             });
           }
         }
