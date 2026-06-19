@@ -2821,8 +2821,7 @@ let currentNavNumber = null;
             minzoom: 0, maxzoom: 13
           });
         }
-
-        if (!map.getLayer('Waterways-line')) {
+if (!map.getLayer('Waterways-line')) {
           map.addLayer({
             id: 'Waterways-line',
             type: 'line',
@@ -2833,17 +2832,29 @@ let currentNavNumber = null;
             paint: {
               'line-color': [
                 'case',
-               ['==',['get', 'refuge'], 1],
-             ['case',
-    ['boolean', ['feature-state', 'selected'], false], '#DE0125',
-    ['boolean', ['feature-state', 'highlight'], false], '#DE0125',
-    '#f7022a'
-  ],
-  ['case',
-    ['boolean', ['feature-state', 'selected'], false], '#006b3f',
-    ['boolean', ['feature-state', 'highlight'], false], '#009e60',
-    '#00843D'
-  ]
+                ['boolean', ['feature-state', 'selected'], false],
+                ['match', ['get', 'type'],
+                  'Public Land', '#006b3f',
+                  'Fish & Game Wetland', '#0b5ed7',
+                  'Forestry', '#012f17',
+                  ['Refuge', 'Closed Game Area'], '#DE0125',
+                  /* default */ '#888888'
+                ],
+                ['boolean', ['feature-state', 'highlight'], false],
+                ['match', ['get', 'type'],
+                  'Public Land', '#009e60',
+                  'Fish & Game Wetland', '#3399FF',
+                  'Forestry', '#026d34',
+                  ['Refuge', 'Closed Game Area'], '#DE0125',
+                  '#888888'
+                ],
+                ['match', ['get', 'type'],
+                  'Public Land', '#00843D',
+                  'Fish & Game Wetland', '#1E90FF',
+                  'Forestry', '#014421',
+                  ['Refuge', 'Closed Game Area'], '#f7022a',
+                  '#888888'
+                ]
               ],
               'line-width': [
                 'case',
@@ -2866,17 +2877,29 @@ let currentNavNumber = null;
             paint: {
               'fill-color': [
                 'case',
-                ['==',['get', 'refuge'], 1],
-                 ['case',
-    ['boolean', ['feature-state', 'selected'], false], '#DE0125',
-    ['boolean', ['feature-state', 'highlight'], false], '#DE0125',
-    '#f7022a'
-  ],
-  ['case',
-    ['boolean', ['feature-state', 'selected'], false], '#006b3f',
-    ['boolean', ['feature-state', 'highlight'], false], '#009e60',
-    '#00843D'
-  ]
+                ['boolean', ['feature-state', 'selected'], false],
+                ['match', ['get', 'type'],
+                  'Public Land', '#006b3f',
+                  'Fish & Game Wetland', '#0b5ed7',
+                  'Forestry', '#012f17',
+                  ['Refuge', 'Closed Game Area'], '#DE0125',
+                  '#888888'
+                ],
+                ['boolean', ['feature-state', 'highlight'], false],
+                ['match', ['get', 'type'],
+                  'Public Land', '#009e60',
+                  'Fish & Game Wetland', '#3399FF',
+                  'Forestry', '#026d34',
+                  ['Refuge', 'Closed Game Area'], '#DE0125',
+                  '#888888'
+                ],
+                ['match', ['get', 'type'],
+                  'Public Land', '#00843D',
+                  'Fish & Game Wetland', '#1E90FF',
+                  'Forestry', '#014421',
+                  ['Refuge', 'Closed Game Area'], '#f7022a',
+                  '#888888'
+                ]
               ],
               'fill-opacity': [
                 'interpolate', ['linear'], ['zoom'],
@@ -2887,7 +2910,6 @@ let currentNavNumber = null;
             }
           }, insertBeforeLayer);
         }
-
         if (isTouch && !map.getLayer('Waterways-touch')) {
           map.addLayer({
             id: 'Waterways-touch',
@@ -2997,8 +3019,7 @@ if (!map.getLayer('FG Regions-line')) {
   }, insertBeforeLayer);
 }
 
-
-        if (!map.getLayer('Waterways-selected-halo')) {
+if (!map.getLayer('Waterways-selected-halo')) {
           map.addLayer({
             id: 'Waterways-selected-halo',
             type: 'line',
@@ -3008,19 +3029,31 @@ if (!map.getLayer('FG Regions-line')) {
             layout: { 'line-join': 'round', 'line-cap': 'round' },
             paint: {
               'line-color': [
-  'case',
-  ['==',['get', 'refuge'], 1],
-  ['case',
-    ['boolean', ['feature-state', 'selected'], false], '#9B0019',
-    ['boolean', ['feature-state', 'highlight'], false], '#f42f58',
-    '#f42f58'
-  ],
-  ['case',
-    ['boolean', ['feature-state', 'selected'], false], '#004d2a',
-    ['boolean', ['feature-state', 'highlight'], false], '#33cc88',
-    '#33cc88'
-  ]
-],
+                'case',
+                ['boolean', ['feature-state', 'selected'], false],
+                ['match', ['get', 'type'],
+                  'Public Land', '#004d2a',
+                  'Fish & Game Wetland', '#003366',
+                  'Forestry', '#002b14',
+                  ['Refuge', 'Closed Game Area'], '#9B0019',
+                  /* default */ '#555555'
+                ],
+                ['boolean', ['feature-state', 'highlight'], false],
+                ['match', ['get', 'type'],
+                  'Public Land', '#33cc88',
+                  'Fish & Game Wetland', '#66b3ff',
+                  'Forestry', '#2f9e64',
+                  ['Refuge', 'Closed Game Area'], '#f42f58',
+                  '#888888'
+                ],
+                ['match', ['get', 'type'],
+                  'Public Land', '#33cc88',
+                  'Fish & Game Wetland', '#66b3ff',
+                  'Forestry', '#2f9e64',
+                  ['Refuge', 'Closed Game Area'], '#f42f58',
+                  '#888888'
+                ]
+              ],
               'line-width': [
                 'case',
                 ['boolean', ['feature-state', 'selected'], false], 5,
